@@ -10,7 +10,6 @@ import com.example.testfragment.R
 import com.example.testfragment.model.Game
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import kotlinx.android.synthetic.main.holder_game_layout.view.*
 
 class GameViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -26,7 +25,7 @@ class GameViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         ratingBarGame.rating = game.gameRating
         imageGame.setImageDrawable(game.gameImage)
 
-        for (console in game.consoles) {
+        for (console in game.console) {
             val chip = Chip(ContextThemeWrapper(itemView.context, R.style.ChipTextAppearence), null, 0)
 
             chip.text = console.consoleName

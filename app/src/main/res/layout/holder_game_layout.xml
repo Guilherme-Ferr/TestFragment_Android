@@ -11,7 +11,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#3C3C3C">
 
         <ImageView
             android:id="@+id/image_game"
@@ -28,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Darksiders II"
+            android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@+id/image_game"
             app:layout_constraintStart_toStartOf="parent"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
@@ -48,6 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Darksiders II é um..."
+
+            android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@+id/chip_group_consoles"
             app:layout_constraintStart_toStartOf="parent"/>
 

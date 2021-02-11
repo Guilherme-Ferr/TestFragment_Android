@@ -8,5 +8,5 @@ data class Game(
     var gameImage: Drawable,
     var gameDescription: String,
     var gameRating: Float,
-    var consoles: List<Console>
+    var console: List<Console>
 )
