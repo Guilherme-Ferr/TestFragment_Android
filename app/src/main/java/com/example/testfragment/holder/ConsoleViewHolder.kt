@@ -14,17 +14,16 @@ class ConsoleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     val textConsoleName = itemView.findViewById<TextView>(R.id.text_view_console_name)
     val textConsoleDescription = itemView.findViewById<TextView>(R.id.text_view_console_description)
+    val textconsoleMakers = itemView.findViewById<TextView>(R.id.text_view_makers)
+    val textconsoleReleaseDate = itemView.findViewById<TextView>(R.id.text_view_release)
     val imageConsole = itemView.findViewById<ImageView>(R.id.image_console)
-    val chipGroupMakers = itemView.findViewById<ChipGroup>(R.id.chip_group_makers)
-    val chipGroupRelease = itemView.findViewById<ChipGroup>(R.id.chip_group_release)
 
     fun bind(console: Console){
         textConsoleName.text = console.consoleName
         textConsoleDescription.text = console.consoleDescription
+        textconsoleMakers.text = console.consoleMaker
+        textconsoleReleaseDate.text = console.consoleReleaseDate
         imageConsole.setImageDrawable(console.consoleImage)
 
-
     }
-
-
 }

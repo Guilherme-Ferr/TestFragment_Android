@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:background="#3C3C3C"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/image_console"
@@ -37,14 +38,13 @@
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
-
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_game" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,27 +70,31 @@
         </ScrollView>
 
         <LinearLayout
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:padding="3dp">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chip_group_makers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/text_view_description"
-                app:layout_constraintStart_toStartOf="parent">
+            <TextView
+                android:id="@+id/text_view_makers"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_width="wrap_content"
+                android:text="bliblobliblo"
+                android:background="@drawable/rounded_text"
+                android:layout_height="22dp"/>
 
-            </com.google.android.material.chip.ChipGroup>
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chip_group_release"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/text_view_description"
-                app:layout_constraintStart_toStartOf="parent">
-
-            </com.google.android.material.chip.ChipGroup>
+            <TextView
+                android:id="@+id/text_view_release"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="blablabla"
+                android:background="@drawable/rounded_text"
+                android:layout_marginStart="15dp"/>
 
         </LinearLayout>
 

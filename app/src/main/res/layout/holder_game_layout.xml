@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#3C3C3C">
+        android:background="#3C3C3C"
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/image_game"

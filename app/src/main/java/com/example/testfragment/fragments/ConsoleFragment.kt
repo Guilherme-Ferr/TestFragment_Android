@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testfragment.R
+import com.example.testfragment.adapter.ConsoleAdapter
 import com.example.testfragment.adapter.GameAdapter
 import com.example.testfragment.data.dao.consoleDataSource
 import com.example.testfragment.data.dao.gameDataSource
@@ -16,7 +17,8 @@ import com.example.testfragment.model.Game
 class ConsoleFragment : Fragment() {
 
     private lateinit var recyclerConsoles: RecyclerView
-    private val consoleAdapter = GameAdapter()
+    private val consoleAdapter = ConsoleAdapter()
+    private var consoleList = listOf<Console>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +41,16 @@ class ConsoleFragment : Fragment() {
         //Informar para a recyclerview qual é o adapater que ela vai usar
         recyclerConsoles.adapter = consoleAdapter
 
+        //Dizer ao adapter qual é a fonte de dados
+        consoleList = consoleDataSource.getConsoles(view.context)
+
+        //Atualizar a lista de jogos do adapter
+        consoleAdapter.updateConsoleList(consoleList)
+
         //Tornar o menu visivel
         setHasOptionsMenu(true)
 
         return view
     }
-
 
 }
