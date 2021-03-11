@@ -10,20 +10,26 @@ import com.example.testfragment.model.Console
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
-class ConsoleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class ConsoleHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
     val textConsoleName = itemView.findViewById<TextView>(R.id.text_view_console_name)
     val textConsoleDescription = itemView.findViewById<TextView>(R.id.text_view_console_description)
     val textconsoleMakers = itemView.findViewById<TextView>(R.id.text_view_makers)
     val textconsoleReleaseDate = itemView.findViewById<TextView>(R.id.text_view_release)
-    val imageConsole = itemView.findViewById<ImageView>(R.id.image_console)
+    val imageConsole = itemView.findViewById<TextView>(R.id.image_console)
 
     fun bind(console: Console){
-        textConsoleName.text = console.consoleName
-        textConsoleDescription.text = console.consoleDescription
-        textconsoleMakers.text = console.consoleMaker
-        textconsoleReleaseDate.text = console.consoleReleaseDate
-        imageConsole.setImageDrawable(console.consoleImage)
+        textConsoleName.text = console.nomeConsole
+        textConsoleDescription.text = console.consoleDescricao
+        textconsoleMakers.text = console.empresaConsole
+        textconsoleReleaseDate.text = console.lancamentoConsole
+        imageConsole.text = (console.consoleImage)
+
+        itemView.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+
 
     }
 }

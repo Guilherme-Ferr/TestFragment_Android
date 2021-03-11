@@ -7,11 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testfragment.R
 import com.example.testfragment.adapter.ConsoleAdapter
-import com.example.testfragment.adapter.GameAdapter
-import com.example.testfragment.data.dao.consoleDataSource
-import com.example.testfragment.data.dao.gameDataSource
 import com.example.testfragment.model.Console
-import com.example.testfragment.model.Game
 
 
 class ConsoleFragment : Fragment() {

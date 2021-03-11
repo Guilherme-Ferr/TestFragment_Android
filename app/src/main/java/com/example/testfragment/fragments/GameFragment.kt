@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testfragment.R
 import com.example.testfragment.adapter.GameAdapter
-import com.example.testfragment.data.dao.gameDataSource
+import com.example.testfragment.data.dao.GameDataSource
 import com.example.testfragment.model.Game
 
 
@@ -39,7 +39,7 @@ class GameFragment : Fragment() {
         recyclerGames.adapter = gameAdapter
 
         //Dizer ao adapter qual é a fonte de dados
-        gameList = gameDataSource.getGames(view.context)
+        gameList = GameDataSource.getGames(view.context)
 
         //Atualizar a lista de jogos do adapter
         gameAdapter.updateGameList(gameList)

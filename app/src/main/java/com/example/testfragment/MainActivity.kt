@@ -2,26 +2,41 @@ package com.example.testfragment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.testfragment.adapter.ConsoleAdapter
+import com.example.testfragment.Dao.Database
 import com.example.testfragment.fragments.ConsoleFragment
 import com.example.testfragment.fragments.GameFragment
 import com.example.testfragment.fragments.HomeFragment
+import com.example.testfragment.model.Console
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, BottomNavigationView. OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
-//    private lateinit var buttonHome: Button
-//    private lateinit var buttonConsoles: Button
-//    private lateinit var buttonGames: Button
+
+    private lateinit var buttonNovoConsole: ImageButton
+    private lateinit var editNome: EditText
+    private lateinit var editDescricao: EditText
+    private lateinit var editEmpresa: EditText
+    private lateinit var editLancamento: EditText
+    private lateinit var editImagemConsole: EditText
+    private lateinit var buttonSalvar: Button
+    private lateinit var buttonCancelar: Button
+    private lateinit var dialog: AlertDialog
+    private lateinit var recyclerConsoles: RecyclerView
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var gameFragment: GameFragment
@@ -38,17 +53,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.drawer_navigation_layout)
 
-//        buttonHome = findViewById(R.id.button_home)
-//        buttonHome.setOnClickListener(this)
-//
-//        buttonConsoles = findViewById(R.id.button_consoles)
-//        buttonConsoles.setOnClickListener(this)
-//
-//        buttonGames = findViewById(R.id.button_games)
-//        buttonGames.setOnClickListener(this)
+        buttonNovoConsole = findViewById(R.id.button_add_console)
+        buttonNovoConsole.setOnClickListener(this)
+        recyclerConsoles = findViewById(R.id.recycler_view_consoles)
+
+        exibirConsoles()
 
         homeFragment = HomeFragment()
         consoleFragment = ConsoleFragment()
@@ -75,9 +86,87 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, BottomNavigation
         setFragment(homeFragment)
     }
 
-   override fun onClick(v: View) {
+    override fun onClick(v: View) {
+
+        if(v.id == R.id.button_add_console) {
+            abrirCadastroConsole()
+        } else if(v.id == R.id.button_cancelar) {
+            dialog.dismiss()
+        } else if (v.id == R.id.button_salvar){
+            salvarConsoles()
+        } else {
+            exibirConsoles()
+        }
+
     }
 
+
+    private fun exibirConsoles() {
+
+
+        val consoleDao = Database.getDataBase(this).consoleDao()
+
+        val consoles = consoleDao.listarTodos()
+
+        //Definir o layout da recyclerView
+        recyclerConsoles.layoutManager = LinearLayoutManager(this)
+
+        //Instanciar o adapter que sera usado pela RecyclerView para carregar os dados
+        val adapter = ConsoleAdapter()
+        adapter.carregarLista(consoles)
+        //Definir o adapter que sera usado pela RecyclerView
+        recyclerConsoles.adapter = adapter
+    }
+
+
+    private fun salvarConsoles() {
+
+        var console = Console(nomeConsole = editNome.text.toString(),
+            consoleDescricao = editDescricao.text.toString(),
+            empresaConsole = editEmpresa.text.toString(),
+            lancamentoConsole = editLancamento.text.toString(),
+            consoleImage = editImagemConsole.text.toString())
+
+
+//        val db = Room.databaseBuilder(
+//            this,
+//            AppDataBase::class.java,
+//            "db_contato").allowMainThreadQueries().build()
+
+        val consoleDao = Database.getDataBase(this).consoleDao()
+
+        consoleDao.salvar(console)
+
+        exibirConsoles()
+
+        dialog.dismiss()
+
+    }
+
+
+    private fun abrirCadastroConsole() {
+
+        val alertDialog = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.cadastro_console_dialog, null)
+        alertDialog.setView(view)
+
+        editNome = view.findViewById(R.id.edit_nome)
+        editEmpresa = view.findViewById(R.id.edit_empresa)
+
+        buttonSalvar = view.findViewById(R.id.button_salvar)
+        buttonCancelar = view.findViewById(R.id.button_cancelar)
+
+        buttonCancelar.setOnClickListener(this)
+        buttonSalvar.setOnClickListener(this)
+
+        dialog = alertDialog.create()
+        dialog.setCancelable(false)
+        dialog.show()
+
+
+        //alertDialog.setCancelable(false).create().show()
+
+    }
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

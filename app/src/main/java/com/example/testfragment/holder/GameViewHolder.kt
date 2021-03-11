@@ -28,7 +28,7 @@ class GameViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         for (console in game.console) {
             val chip = Chip(ContextThemeWrapper(itemView.context, R.style.ChipTextAppearence), null, 0)
 
-            chip.text = console.consoleName
+            chip.text = console.nomeConsole
             chipGroupConsoles.addView(chip)
         }
     }

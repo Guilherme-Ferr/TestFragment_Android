@@ -6,6 +6,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="EditTextTheme">
+        <item name="colorControlNormal">#FFFFFF</item>
+    </style>
 
     <!-- Tema para o Chip -->
     <style name="ChipTextAppearence" parent="Theme.MaterialComponents.Light">

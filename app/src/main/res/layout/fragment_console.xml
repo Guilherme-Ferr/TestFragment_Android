@@ -13,11 +13,12 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/holder_console_layout" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/button_add_console"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="8dp"
-        android:tint="@android:color/white"
+        android:tint="@android:color/black"
         android:src="@drawable/ic_baseline_add_24"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
